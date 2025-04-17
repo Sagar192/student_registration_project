@@ -1,0 +1,53 @@
+{% extends 'student_details/base.html' %}
+{% block content %}
+   <div class="container mt-4">
+        <h2>Student Full Details</h2>
+        <h3>Student details</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Contact number</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Highest Qualification</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.contact_no }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.gender }}</td>
+                        <td>{{ student.highest_education }}</td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <h3>Admission Details</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Joining Date</th>
+                    <th>Completion Date</th>
+                    <th>Course Status</th>
+                    <th>Course Fees</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>{{ admission.course_joined }}</td>
+                        <td>{{ admission.joining_date }}</td>
+                        <td>{{ admission.completion_date }}</td>
+                        <td>{{ admission.course_status }}</td>
+                        <td>{{ admission.course_fee }}</td>
+                    </tr>
+
+            </tbody>
+        </table>
+
+        <a class="btn btn-outline-primary" href="{% url 'update_details' student.pk %}" >Update Details</a>
+   </div>
+{% endblock content %}
+

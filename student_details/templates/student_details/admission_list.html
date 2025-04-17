@@ -1,0 +1,43 @@
+{% extends 'student_details/base.html' %}
+{% block content %}
+   <div class="container mt-4">
+        <h2>Admission List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact No</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Highest Education</th>
+                    <th>Course Joined</th>
+                    <th>Full Details</th>
+                    <th>Fee Report</th>
+                    <th>Delete option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admission in admissions %}
+                    <tr>
+                        <td>{{ admission.student.name }}</td>
+                        <td>{{ admission.student.contact_no }}</td>
+                        <td>{{ admission.student.address }}</td>
+                        <td>{{ admission.student.gender }}</td>
+                        <td>{{ admission.student.highest_education }}</td>
+                        <td>{{ admission.course_joined }}</td>
+                        <td><a href="{% url 'student_detail' admission.student.pk %}"><i class="ri-folder-open-line"></i></a></td>
+                        <td><a href="{% url 'student_report' admission.pk %}"><i class="ri-file-list-3-line"></i></a></td>
+                        <td><a class="btn btn-outline-danger" href="{% url 'admission_delete' admission.pk %}" >Delete</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="9">No admissions found.</td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+
+
+   </div>
+{% endblock content %}
+

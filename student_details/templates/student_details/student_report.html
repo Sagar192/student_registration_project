@@ -1,0 +1,46 @@
+{% extends 'student_details/base.html' %}
+{% block content %}
+    <div class="container mt-4">
+        <h2>{{ title }}</h2>
+
+    <h4>Student: {{ student.name }}</h4>
+        <p>Course Joined: {{ admission.course_joined }}</p>
+        <p>Total Course Fee: ₹{{ admission.course_fee }}</p>
+        <p>Total Paid: ₹{{ total_fee_paid }}</p>
+        <p>Remaining: ₹{{ remaining_amt_to_pay }}</p>
+
+        <h4>Payment History</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Payment Date</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Mode</th>
+                    <th>Paid To</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in fee_record_details %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ record.fee_paid_date }}</td>
+                        <td>₹{{ record.fee_paid }}</td>
+                        <td>{{ record.payment_mode }}</td>
+                        <td>{{ record.paid_to }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No payment records found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if remaining_amt_to_pay > 0 %}
+            <a class="btn btn-outline-primary" href="{% url 'add_fee' student.pk %}" >Add Fee</a>
+        {% else %}
+            <button class="btn btn-secondary" disabled>Fee Fully Paid</button>
+        {% endif %}
+    </div>
+
+{% endblock content %}

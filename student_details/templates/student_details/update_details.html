@@ -1,0 +1,24 @@
+
+{% extends 'student_details/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+   <h2>Update All Details</h2>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset class="form-field">
+            <legend class="border-bottom mb-4">Student Details</legend>
+            {{student_form|crispy}}
+        </fieldset>
+        <fieldset class="form-field">
+            <legend class="border-bottom mb-4">Admission Details</legend>
+            {{ admission_form|crispy }}
+        </fieldset>
+        <div class="form-field">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock content %}
+
+
+
+
